@@ -1,0 +1,47 @@
+﻿@model Course
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<section class="product-detail">
+    <div class="product-detail-inner">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex align-items-center ">
+                    @foreach (var item in ViewBag.images)
+                    {
+                        <div style="width:200px; " class="m-1" data-id="@item.Id">
+                            <img class="img-fluid" src="~/img/@item.Url" />
+      
+                        </div>
+                    }
+                </div>
+               
+                <form asp-action="Detail" >
+                   
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input disabled class="form-control" asp-for="Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input disabled class="form-control" asp-for="Description">
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input disabled class="form-control" asp-for="Price">
+                    </div>
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input disabled class="form-control" asp-for="Author.FullName">
+                    </div>
+                    <div class="form-group">
+                        <label>Hours</label>
+                        <input disabled class="form-control" asp-for="Hour">
+                    </div>
+                    <a asp-action="Index" class=" my-2 btn btn-info" style="text-decoration:none;"><i class="fa-solid fa-previous"></i>Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

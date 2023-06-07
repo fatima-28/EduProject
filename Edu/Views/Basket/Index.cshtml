@@ -1,0 +1,54 @@
+﻿@using Edu.ViewModels
+@model IEnumerable<BasketDetailVM>
+@{
+    ViewData["Title"] = "Index";
+    double grandTotal = 0;
+}
+
+<div class="container">
+    <h1 class="text-center my-3">Products</h1>
+    @if (Model.Count() > 0)
+    {
+        <div class="products-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><img style="width:100px;height:100px" src="~/img/@item.Image" /></td>
+                            <td>@item.Name</td>
+                            <td>@item.Price $</td>
+                            <td>@item.Count</td>
+                            <td>@item.TotalPrice $</td>
+                            <td>
+                                
+                                    <a data-id="@item.Id" class="delete-from-card btn btn-danger">Delete</a>
+                               
+                            </td>
+                        </tr>
+
+                        grandTotal += item.TotalPrice;
+                    }
+                </tbody>
+            </table>
+            <h3 id="basket-total-price">Total : @grandTotal ₼</h3>
+            <button class="reload-page btn btn-warning text-white d-none">Update Basket</button>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+           Basket is Empty!
+        </div>
+    }
+</div>
